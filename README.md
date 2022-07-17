@@ -1,8 +1,8 @@
 # UFC Fight Predictor Webapp
-## (Public Repository)
+## (Public Repository)  
 
-![](demo_gif.gif)
-[http://ufc-fight-predictor.com](http://ufc-fight-predictor.com)
+![](demo_gif.gif)  
+[http://ufc-fight-predictor.com](http://ufc-fight-predictor.com)  
 A webapp where users can use a pretrained model to predict fight outcomes. This is the public version of the webapp repo that does not include model files and datasets. More details about the model can be found [here](https://medium.com/@ciaranbench/how-to-make-money-with-machine-learning-value-betting-on-predicted-ufc-fight-outcomes-46ef6e916912). 
 
 ### TensorFlow.js
