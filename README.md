@@ -13,7 +13,7 @@ The user is initially presented with a starting page that has an HTML form to ta
 
 When this HTML form is submitted, the stats of each fighter will be acquired, their difference taken, and the resultant array normalised to prepare it for the pretrained network.
 
-The network output is used to render the results page.
+The results page displays the network output.
 
 The results page will display an error message if no fighters, or only one fighter, is selected.
 
