@@ -1,0 +1,14 @@
+<body style="background-color:bisque;">
+<body>
+    <center><h2><p style="font-family: 'Cutive Mono', monospace;">Model Accuracy</p></h2></center>
+    <p style="font-family: Arial">The model was only trained on male matchups. Therefore, the model's accuracy is expected to be lower for women's fights (read more <a href='https://medium.com/@ciaranbench/how-to-make-money-with-machine-learning-value-betting-on-predicted-ufc-fight-outcomes-46ef6e916912' style="color:red">here</a>).</p>
+    <p style="font-family: Arial">Predictions with high confidence are more likely to be correct. When applied to a test set of 360 fights (all male matchups):</p>
+
+    <ul><li><p style="font-family: Arial">The network was correct 87% of the time when it predicted the fight favourite with confidence >90%.</p></li><li><p style="font-family: Arial">The network was correct 71% of the time when it predicted the fight underdog with confidence >55%.</p></li></ul>
+
+    <p style="font-family: Arial">Though, bear in mind that these fights are not representative of all different matchups one may encounter in the future (only a small subset of all 360 fights satisfied either criteria above). Therefore the actual accuracy may be lower than this in practice.</p><br>
+</body>
+<body>
+    <center><h2><p style="font-family: 'Cutive Mono', monospace;">Model Architecture</p></h2></center>
+    <p style="font-family: Arial">The architecture of the model used on this site differs slightly from the one described in <a href='https://medium.com/@ciaranbench/how-to-make-money-with-machine-learning-value-betting-on-predicted-ufc-fight-outcomes-46ef6e916912' style="color:red">my Medium article</a>. The architecture mentioned in the article averaged the results of five identical graphs. Here, we only use one graph and remove the averaging layer. Both networks should produce very similar results - the predictions produced here are more sensitive to the weight initialisation.</p>
+</body>

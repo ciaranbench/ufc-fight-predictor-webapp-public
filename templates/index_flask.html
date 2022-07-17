@@ -1,0 +1,79 @@
+<body style="background-color:bisque;">
+<center>
+    <h1><p style="font-family: 'Cutive Mono', monospace;">UFC Fight Predictor</p></h1>
+    <body><img src="/static/test_small.gif"></body>
+    <body>
+        <!-- Create form for (i) acquiring user inputs, (ii) then executing python function to genrate network input data from user inputs. -->
+        <!-- method POST used to make output availabe in python code -->
+        <form class="grid" action="/result" method="POST" id="form">
+            <!-- Dropdown menus -->
+            <h3><p style="font-family: 'Cutive Mono', monospace;">Select your fighters</a>.</p></h3>
+            <body>Fight Favourite:&nbsp;&nbsp;
+                </body>
+            <select id="name_1" name="name_1">
+                <option>Select Fight Favourite</option>
+            </select><br>
+            <body>Fight Underdog:&nbsp;&nbsp;
+                </body>
+                <select id="name_2" name="name_2">
+                    <option>Select Fight Underdog</option>
+                    
+                </select><br><br>
+                <input class="file_submit" type="Submit">
+            <!-- Jinja template enables python based executable code in html file. Checks if network input exists -->
+            <script>
+                let fighter_database_names = {{fighter_dir|tojson}};
+                console.log((fighter_database_names))
+                //populate dropdown list with fighter names
+                var options = fighter_database_names
+                console.log(options)
+                var select = document.getElementById("name_1");
+                
+                for(var i = 0; i < options.length; i++) {
+                    var opt = options[i];
+                    console.log(opt)
+                    var el = document.createElement("option");
+                    console.log(el)
+                    el.textContent = opt;
+                    console.log(el)
+                    el.value = opt;
+                    console.log(el)
+                    select.appendChild(el);
+                    
+                }
+                //populate other dropdown list with fighter names
+                var select_under = document.getElementById("name_2");
+                
+                for(var i = 0; i < options.length; i++) {
+                    var opt = options[i];
+                    console.log(opt)
+                    var el = document.createElement("option");
+                    console.log(el)
+                    el.textContent = opt;
+                    console.log(el)
+                    el.value = opt;
+                    console.log(el)
+                    select_under.appendChild(el);
+                    
+                }
+                
+            </script>
+            <!-- Link to page describing fav vs und -->
+  <p style='font-family: Arial'><a href="{{ url_for('fav_vs_und') }}" style="color:red">(What is a fight favourite/underdog?)</a></p>
+            <!-- Old text boxes for users to type in fighter names
+            <h4><p style="font-family: 'Cutive Mono', monospace;">Or manually enter the name of each fighter as they are written on <a href='http://ufcstats.com/statistics/fighters' style="color:red"> ufcstats.com</a>.</p></h4>
+            <label for="name_1">Fight Favourite:</label>
+            <input type="text" id="name_1" name="name_1"><br><br>
+            <label for="name_2">Fight Underdog:</label>
+            <input type="text" id="name_2" name="name_2"><br><br>
+            <input class="file_submit" type="Submit"><br><br>
+            -->
+            <!-- Other links -->
+            <p style="font-family: 'Cutive Mono', monospace;">Learn more about this project <a  href='https://medium.com/@ciaranbench/how-to-make-money-with-machine-learning-value-betting-on-predicted-ufc-fight-outcomes-46ef6e916912' style="color:red">here</a>.</p>
+            <p style="font-family: 'Cutive Mono', monospace;"><a href='https://www.betmma.tips/third_ai_' style="color:red">Profits to date</a></p>
+            <p style="font-family: 'Cutive Mono', monospace;"><a href='https://twitter.com/third_ai_' style="color:red">Twitter</a></p>
+            <p style="font-family: 'Cutive Mono', monospace;"><a href='https://ciaranbench.github.io' style="color:red">About me</a></p>
+        </form>
+    </body>
+</center>
+

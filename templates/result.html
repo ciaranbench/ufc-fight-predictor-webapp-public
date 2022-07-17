@@ -1,0 +1,78 @@
+<!-- Load this to enable use of TensorFlow JS-->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+<body style="background-color:bisque;">
+{% if input_arr %}
+    <script>
+       // Using |tojson ensures string data is not corrupted
+        let numberArray = {{input_arr|tojson}};
+        let fav_name = {{fighter_1_name|tojson}};
+        let und_name = {{fighter_2_name|tojson}};
+        
+        // The following checks if the user actually selected two fighters. Python code outputs 'missing_fighter' as the network input if one of the entries is blank. In this case, an error message will be written on the results page.
+        console.log(numberArray);
+        if (numberArray == 'missing_fighter') {
+            console.log('Fighter not found')
+        } else {
+
+            //////////////
+            //TensorFlow JS is used to evaluate netowrk output
+            //////////////
+            
+            //Define function that loads the pretrained network
+            async function load() {
+              const model = await tf.loadLayersModel('/static/model.json');
+              return model;
+            };
+            // Define function that outputs prediction
+            function predict(model) {
+              // convert input data array into TF tensor
+               const inputTensor = tf.tensor(numberArray)
+              //Acquire fight prediction, we use .then because the model is a promise
+               model.then(model => {
+                   model.summary();
+                   let result = model.predict(inputTensor);
+                   //makes variable values readable in logs
+                   console.log(result);
+                   readable_input = inputTensor.dataSync();
+                   console.log(readable_input);
+                   readable_output = result.dataSync();
+                   console.log(result);
+                   console.log(readable_output);
+                   
+                   let favourite_conf = String(Math.round(100*readable_output[0]))
+                   document.getElementById("favourite_conf").innerHTML = favourite_conf;
+                   
+                   let underdog_conf = String(Math.round(100*readable_output[1]))
+                   document.getElementById("underdog_conf").innerHTML = underdog_conf;
+                   
+                   let favourite_name = fav_name
+                   document.getElementById("favourite_name").innerHTML = favourite_name;
+                   
+                   let underdog_name = und_name
+                   document.getElementById("underdog_name").innerHTML = underdog_name;
+
+               });
+             
+            };
+            // Load the network immediately to avoid delay when user clicks 'Predict'
+            const model = load();
+            // acquire output using the pretrained model once loaded.
+            predict(model)
+        }
+    </script>
+{% endif %}
+
+{% if input_arr == 'missing_fighter'%}
+    <!-- Write error message on results page-->
+    <script>
+        document.write('<h3><p style="font-family: Arial">Input Error: Please select two fighters.</p></h3>')
+    </script>
+{% else %}
+    <!-- Display network predictions --> 
+    <h1><center><p style="font-family: 'Cutive Mono', monospace;">Results</p><center></h1>
+    <h3><center><p style="font-family: Arial">Confidence that <span id="favourite_name"></span> (favourite) wins: <span id="favourite_conf"></span>%</p></center></h3>
+    <h3><center><p style="font-family: Arial">Confidence that <span id="underdog_name"></span> (underdog) wins: <span id="underdog_conf"></span>%</p></center></h3><br>
+    <center> <h4><p style='font-family: Arial'>NOTE: predictions for women's matches are likely to be less accurate</p></h4></center>
+    <center> <h4><p style='font-family: Arial'><a href="{{ url_for('model_acc') }}" style="color:red">(Comment on model accuracy)</a></p></h4></center>
+{% endif %}
+
