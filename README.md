@@ -20,7 +20,7 @@ The results page will display an error message if no fighters, or only one fight
 There are also two other pages that display additional information (accessible with hyperlinks).
 
 ### Resources
-I was able to build this webapp using the following resources:
+I was able to build this webapp using the following resources:  
 [Tensorflow.js model in as little code as possible (GitHub Gist)](https://gist.github.com/jamescalam/f87bc4e941a86b66a782b90980f045de)  
 [Run Python Script Clicking Html Button | Latest 2021](https://www.youtube.com/watch?v=0meTbQQaosU)  
 [How to Deploy a Flask App to Heroku | Flask Heroku Deployment](https://www.youtube.com/watch?v=D2GLVoiEZyE)  
