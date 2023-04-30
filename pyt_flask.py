@@ -1,5 +1,5 @@
 '''
-This script intitially renders the starting page that has an html form to take user inputs (slection from dropdown menu of fighters). A list of all fighters in the database is processed in python, and used to render the dropdown menus on the start page.
+This script intitially renders the starting page that has an html form to take user inputs (slection from dropdown menu of fighters). A list of all fighters in the database is processed in python, and used to render the dropdown menus on the startpage.
 When html form is submitted, fighter names will be processed here by result().
 result() will acquire the stats of each fighter from a dataset, take their difference, and normalise each element of this array to prepare it for the network.
 This script will then give the network input to result.html that will compute the prediction and display it on the results page.
@@ -131,7 +131,7 @@ def result():
             all_data.append(example)
         all_data = np.vstack(all_data)
         #Normalise network input
-        for i in range(0,14):
+        for i in range(0,15):
             input_dat[:,i] = (input_dat[:,i] -np.mean(all_data[:,i]))/(np.max(all_data[:,i]) - np.min(all_data[:,i]))
         input_arr = input_dat
         input_arr = input_arr.tolist()
